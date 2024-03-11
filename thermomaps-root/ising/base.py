@@ -1,4 +1,4 @@
-import numpy as np
+aimport numpy as np
 import random
 import sys
 from typing import Callable, Dict, List, Type
@@ -40,7 +40,7 @@ class IsingModel:
         self.update = sampler.update
         self.trajectory = EnsembleIsingTrajectory(
             summary = Summary(name="IsingModel", size=size, temperature=temp, Jx=Jx, Jy=Jy, betaJx=Jx/temp, betaJy=Jy/temp, sampler=sampler.name),
-            state_variables = Summary(temperature=temp)
+            state_variables = Summary(betaJx=Jx/temp)
             )
 
     def simulate(self, steps: int, observables: List[Callable[[np.ndarray], float]], sampling_frequency: int):
