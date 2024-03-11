@@ -16,7 +16,7 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 
 
 class IsingModel:
-    def __init__(self, sampler: Type['Sampler'], size: int, warmup: int, temp: float, Jx: float = 1.0, Jy: float = 1.0, betaJx: float = 1.0, betaJy: float = 1.0):
+    def __init__(self, sampler: Type['Sampler'], size: int, warmup: int, temp: float, Jx: float = 1.0, Jy: float = 1.0):
         """
         Initialize the base Ising model.
 
@@ -39,7 +39,7 @@ class IsingModel:
         sampler = sampler(self)
         self.update = sampler.update
         self.trajectory = EnsembleIsingTrajectory(
-            summary = Summary(name="IsingModel", size=size, temperature=temp, Jx=Jx, Jy=Jy, betaJx=betaJx, betaJy=betaJy, sampler=sampler.name),
+            summary = Summary(name="IsingModel", size=size, temperature=temp, Jx=Jx, Jy=Jy, betaJx=Jx/temp, betaJy=Jy/temp, sampler=sampler.name),
             state_variables = Summary(temperature=temp)
             )
 
