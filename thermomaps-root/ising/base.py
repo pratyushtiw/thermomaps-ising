@@ -33,15 +33,15 @@ class IsingModel:
         self.temp = temp
         self.Jx = Jx
         self.Jy = Jy
-        self.betaJx = Jx/temp
-        self.betaJy = Jy/temp
+        self.ToverJx = temp/Jx
+        self.ToverJy = temp/Jy
         self.snapshots = []
         sampler = sampler(self)
         self.update = sampler.update
         self.trajectory = EnsembleIsingTrajectory(
-            summary = Summary(name="IsingModel", size=size, temperature=temp, Jx=Jx, Jy=Jy, betaJx=Jx/temp, betaJy=Jy/temp, sampler=sampler.name),
-            # state_variables = Summary(betaJx=Jx/temp)
-            state_variables = Summary(temperature=temp)
+            summary = Summary(name="IsingModel", size=size, temperature=temp, Jx=Jx, Jy=Jy, ToverJx=temp/Jx, ToverJy=temp/Jy, sampler=sampler.name),
+            state_variables = Summary(ToverJx=temp/Jx)
+            # state_variables = Summary(temperature=temp)
             )
 
     def simulate(self, steps: int, observables: List[Callable[[np.ndarray], float]], sampling_frequency: int):
