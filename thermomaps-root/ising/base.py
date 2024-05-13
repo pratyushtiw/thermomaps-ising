@@ -39,8 +39,10 @@ class IsingModel:
         sampler = sampler(self)
         self.update = sampler.update
         self.trajectory = EnsembleIsingTrajectory(
-            summary = Summary(name="IsingModel", size=size, temperature=temp, Jx=Jx, Jy=Jy, sampler=sampler.name),
-            state_variables = Summary(ToverJx=temp/Jx, ToverJy=temp/Jy, temperature=temp, Jx=Jx, Jy=Jy)
+            summary = Summary(name="IsingModel", size=size, temperature=temp, Jx=Jx, Jy=Jy, ToverJx=temp/Jx, ToverJy=temp/Jy, sampler=sampler.name),
+            state_variables = Summary(temperature=temp, Jx=Jx, Jy=Jy, ToverJx=temp/Jx, ToverJy=temp/Jy)
+
+        
             # state_variables = Summary(temperature=temp)
             )
 
