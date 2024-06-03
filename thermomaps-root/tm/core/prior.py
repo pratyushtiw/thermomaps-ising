@@ -34,7 +34,7 @@ class GlobalEquilibriumHarmonicPrior(UnitNormalPrior):
     def sample(self, batch_size, temperatures, *args, **kwargs):
         """Sample from a distribution where variance is defined by temperatures."""
         logger.debug(f"{temperatures=}")
-        temperatures = torch.abs(torch.Tensor(np.array(temperatures))) #since standard deviation is needed
+        temperatures = torch.Tensor(np.array(temperatures)) #since standard deviation is needed
         full_shape = [batch_size] + self.shape
         coord_shape = [batch_size] + [self.num_coord_ch] + self.shape[1:]
         fluct_shape = [batch_size] + [self.num_fluct_ch] + self.shape[1:]
