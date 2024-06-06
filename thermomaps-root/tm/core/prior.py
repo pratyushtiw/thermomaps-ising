@@ -63,6 +63,6 @@ class GlobalEquilibriumHarmonicPrior(UnitNormalPrior):
 
         for sample_idx, ch_variances in enumerate(variances):
             logging.debug(f"{ch_variances.shape}")
-            samples[sample_idx] = torch.normal(mean=0.*np.sqrt(ch_variances), std=np.sqrt(ch_variances))
+            samples[sample_idx] = torch.normal(mean=0., std=np.sqrt(ch_variances))
         logger.debug(f"{samples.shape}")
         return samples
